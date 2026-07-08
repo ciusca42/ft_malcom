@@ -3,11 +3,6 @@
 
 #define ERROR_PREFIX "[ERROR] - "
 
-void print_help(void) {
-    //todo
-    printf("display help\n");
-}
-
 
 void logger(char *msg, int type) {
 

@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "../../includes/ft_malcom.h"
 
 void print_help(void) {
     //todo
