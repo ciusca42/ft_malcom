@@ -32,7 +32,6 @@ void handle_packet(struct sockaddr_ll *saddr, unsigned char *buffer) {
 	
 	packet = extract_arp_frame(buffer);
 	print_arp_packet(packet);
-	printf("test-> %d\n", packet.ar$hln);
 
     // debug_print(saddr);
 }
