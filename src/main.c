@@ -28,7 +28,7 @@ void handle_packet(struct sockaddr_ll *saddr, unsigned char *buffer) {
 
     infolog("parsing packet");
 	
-	printf("pkttype: %u\n", saddr->sll_pkttype);
+	// printf("pkttype: %u\n", saddr->sll_pkttype); // 1 is broadcast i think, did not remember
 	
 	packet = extract_arp_frame(buffer);
 	print_arp_packet(packet);
