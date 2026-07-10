@@ -1,8 +1,6 @@
 #include "../../includes/ft_malcom.h"
 
 
-#define ERROR_PREFIX "[ERROR] - "
-
 
 void logger(char *msg, int type) {
 
@@ -41,15 +39,15 @@ void logger(char *msg, int type) {
 
 
 //utilities for the logger function
-void infolog(char *msg) {
+void info_log(char *msg) {
     logger(msg, INFO);
 }
 
-void warnlog(char *msg) {
+void warn_log(char *msg) {
     logger(msg, WARNING);
 }
 
-void errlog(char *msg) {
+void err_log(char *msg) {
     logger(msg, ERROR);
 }
 

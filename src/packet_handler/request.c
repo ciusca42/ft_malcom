@@ -4,8 +4,6 @@ arp_pckt extract_arp_frame(unsigned char *buffer) {
     arp_pckt packet;
     ssize_t i;
     i = 0;
-    
-
 
 	for (int j = 0; j < 2; j++, i++)
         packet.ar$hrd[j] = buffer[i];

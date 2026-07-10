@@ -30,15 +30,18 @@ extern int g_signal;
 #include "errors.h"
 #include "structs.h"
 
+//libft
+#include "../libft/libft.h"
+
 /* display help */
 void print_help(void);
+void usage();
 
 /* logger */
 void logger(char *msg, int type);
-void infolog(char *msg);
-void warnlog(char *msg);
-void errlog(char *msg);
-
+void info_log(char *msg);
+void warn_log(char *msg);
+void err_log(char *msg);
 
 /* packet print utils */
 void print_address(unsigned char *addr, unsigned short len, const char *sep);
@@ -46,5 +49,6 @@ void print_arp_packet(arp_pckt packet);
 
 /* packet handler */
 arp_pckt extract_arp_frame(unsigned char *buffer);
+int send_packet(reply_struct reply);
 
 #endif //FT_MALCOM_FT_MALCOM_H
