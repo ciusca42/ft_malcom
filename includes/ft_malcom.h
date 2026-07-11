@@ -25,6 +25,10 @@ extern int g_signal;
 #include <linux/if_packet.h>
 #include <net/ethernet.h>
 #include <linux/if_ether.h>
+#include <net/if.h>
+#include <sys/types.h>
+#include <ifaddrs.h>
+#include <time.h>
 
 // projects inludes
 #include "errors.h"
@@ -49,6 +53,6 @@ void print_arp_packet(arp_pckt packet);
 
 /* packet handler */
 arp_pckt extract_arp_frame(unsigned char *buffer);
-int send_packet(reply_struct reply);
+int send_reply(reply_struct reply, arp_pckt packet);
 
 #endif //FT_MALCOM_FT_MALCOM_H

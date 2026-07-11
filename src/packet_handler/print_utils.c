@@ -22,7 +22,7 @@ void print_arp_packet(arp_pckt packet)
     printf("ar$pro (protocol type): 0x%02x\n", packet.ar$pro);
     printf("ar$hln (hw addr len):    %hu\n", packet.ar$hln);
     printf("ar$pln (proto addr len): %hu\n", packet.ar$pln);
-    printf("ar$op (opcode):          %02x%02x\n", packet.ar$op[0], packet.ar$op[1]);
+    printf("ar$op (opcode):          %02x\n", packet.ar$op);
 
     printf("ar$sha (sender MAC):    ");
     print_address(packet.ar$sha, packet.ar$hln, ":");

@@ -5,11 +5,11 @@ arp_pckt extract_arp_frame(unsigned char *buffer) {
     ssize_t i;
     i = 0;
 
-	for (int j = 0; j < 2; j++, i++)
-        packet.ar$hrd[j] = buffer[i];
+	packet.ar$hrd = (((short)buffer[i]) << 8) | buffer[i + 1];
+	i+= 2;
 
-	for (int j = 0; j < 2; j++, i++)
-        packet.ar$pro[j] = buffer[i];
+	packet.ar$pro = (((short)buffer[i]) << 8) | buffer[i + 1];
+	i += 2;
 
 	packet.ar$hln = buffer[i];
 	i++;
@@ -17,8 +17,8 @@ arp_pckt extract_arp_frame(unsigned char *buffer) {
 	packet.ar$pln = buffer[i];
 	i++;
 
-	for (int j = 0; j < 2; j++, i++)
-        packet.ar$op[j] = buffer[i];
+	packet.ar$op = (((short)buffer[i]) << 8) | buffer[i + 1];
+	i+=2;
 
 	for (int j = 0; j < packet.ar$hln; j++, i++) {
         packet.ar$sha[j] = buffer[i];

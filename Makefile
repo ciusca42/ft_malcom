@@ -13,7 +13,7 @@ OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 COMPILER = gcc
 COMPILE_FLAGS = -Wall -Wextra -Werror -g
 
-INSTALL_DIR = $(HOME)/.local/bin
+INSTALL_DIR = /home/$(USER)/.local/bin
 
 # Colors (unquoted, octal escapes -> use with printf, not echo)
 RED    = \033[0;31m
@@ -50,6 +50,7 @@ $(NAME): $(OBJ)
 	$(COMPILER) $(COMPILE_FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 	@mkdir -p $(INSTALL_DIR)
 	@cp $(NAME) $(INSTALL_DIR)/$(BIN_NAME)
+# 	@export PATH=PATH:$(INSTALLDIR)/$(BIN_NAME)
 	$(ASCII_ART)
 	@printf "$(GRN)Installed ->$(CRESET) $(WHT)$(INSTALL_DIR)/$(BIN_NAME)$(CRESET)\n"
 

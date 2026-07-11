@@ -3,21 +3,21 @@
 
 #include <stdio.h>
 
-// see RFC 826 https://datatracker.ietf.org/doc/html/rfc826
+
 
 typedef struct s_arp_packet {
-	unsigned short ar$hrd; /* Hardware address space (e.g., Ethernet,
+	unsigned short ar$hrd;   /* 16 bit Hardware address space (e.g., Ethernet,
 			                    Packet Radio Net.). */
 
-	unsigned short ar$pro; /* Protocol address space.  For Ethernet
+	unsigned short ar$pro; /* 16 bit Protocol address space.  For Ethernet
                                 hardware, this is from the set of type
                                 fields ether_typ$<protocol>. */
 
-    unsigned char ar$hln; /* byte length of each hardware address */
-    unsigned char ar$pln; /* byte length of each protocol address */
+    unsigned char ar$hln; /* 8 bit byte length of each hardware address */
+    unsigned char ar$pln; /* 8 bit byte length of each protocol address */
 
 
-    unsigned short ar$op[2]; /* opcode (ares_op$REQUEST | ares_op$REPLY) */
+    unsigned short ar$op; /* 16 bit opcode (ares_op$REQUEST | ares_op$REPLY) */
 
     unsigned char ar$sha[6]; /* Hardware address of sender of this
 					            packet, n from the ar$hln field. */
@@ -45,10 +45,11 @@ typedef struct s_reply_struct {
 
 typedef struct s_args {
 
-    char *source_ip;
-    char *target_ip;
-    char *source_mac;
-    char *target_mac;
+    //addr??
+    unsigned char source_ip[4];
+    unsigned char source_mac[6];
+    unsigned char target_ip[4];
+    unsigned char target_mac[6];
 
 } t_args;
 
