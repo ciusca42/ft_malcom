@@ -1,4 +1,4 @@
-NAME = ft_malcom
+NAME = ft_malcolm
 BIN_NAME = mitm
 
 SRC_DIR = src
@@ -15,7 +15,6 @@ COMPILE_FLAGS = -Wall -Wextra -Werror -g
 
 INSTALL_DIR = /home/$(USER)/.local/bin
 
-# Colors (unquoted, octal escapes -> use with printf, not echo)
 RED    = \033[0;31m
 GRN    = \033[0;32m
 YEL    = \033[0;33m

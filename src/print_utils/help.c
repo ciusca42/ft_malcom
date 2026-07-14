@@ -6,6 +6,6 @@ void print_help(void) {
 }
 
 void usage() {
-    printf("\n./ft_malcom source_ip, source_mac, target_ip, target_mac\n");
-    printf("\nuse --help for more informations\n\n");
+    printf("\nusage: ./ft_malcom [options] source_ip, source_mac, target_ip, target_mac\n");
+    printf("use --help for more informations\n\n");
 }

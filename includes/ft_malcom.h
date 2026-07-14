@@ -12,6 +12,9 @@
 #define WARNING 2 
 #define ERROR 3
 
+#define IP_ADDRESS -1
+#define MAC_ADDRESS 1
+
 extern int g_signal;
 
 // std library
@@ -29,6 +32,9 @@ extern int g_signal;
 #include <sys/types.h>
 #include <ifaddrs.h>
 #include <time.h>
+#include <arpa/inet.h>
+#include <net/if_arp.h>
+#include <sys/wait.h>
 
 // projects inludes
 #include "errors.h"
@@ -36,6 +42,12 @@ extern int g_signal;
 
 //libft
 #include "../libft/libft.h"
+
+/* parsing */
+t_args parse_input(const char **argv);
+
+/* parsing msgs */
+void parsing_error(char *error_type, char *msg);
 
 /* display help */
 void print_help(void);
@@ -50,9 +62,13 @@ void err_log(char *msg);
 /* packet print utils */
 void print_address(unsigned char *addr, unsigned short len, const char *sep);
 void print_arp_packet(arp_pckt packet);
+void print_sockaddr_ll(struct sockaddr_ll info);
+void print_sockaddr(struct sockaddr *sa);
 
 /* packet handler */
 arp_pckt extract_arp_frame(unsigned char *buffer);
-int send_reply(reply_struct reply, arp_pckt packet);
+ssize_t send_reply(reply_struct reply, int verbose);
+reply_struct create_reply(int sockfd, t_args args);
+void handle_packet(int sockfd, struct sockaddr_ll *saddr, unsigned char *buffer, t_args args);
 
 #endif //FT_MALCOM_FT_MALCOM_H

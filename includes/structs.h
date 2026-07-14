@@ -4,8 +4,7 @@
 #include <stdio.h>
 
 
-
-typedef struct s_arp_packet {
+typedef struct __attribute__((packed)) s_arp_packet {
 	unsigned short ar$hrd;   /* 16 bit Hardware address space (e.g., Ethernet,
 			                    Packet Radio Net.). */
 
@@ -34,23 +33,25 @@ typedef struct s_arp_packet {
 
 typedef struct s_reply_struct {
 
-    int sockfd; // your socket
-    char *buffer; // bytes buffer (to convert from arp_pckt)
-    size_t buff_size; // buffer size
-    struct sockaddr *addr; // sender addr   (addr.family / addr.address[addr_len] )
-    size_t addr_len; // addr len
+    int             sockfd; // your socket
+    char            *buffer[sizeof(arp_pckt)]; // bytes buffer (to convert from arp_pckt)
+    size_t          buff_size; // buffer size
+    unsigned char   sender_addr[6];
 
 } reply_struct;
 
 
 typedef struct s_args {
 
-    //addr??
+    //todo: maybe use addr??
     unsigned char source_ip[4];
     unsigned char source_mac[6];
     unsigned char target_ip[4];
     unsigned char target_mac[6];
-
+    
+    //flags
+    int verbose;
+    int hostname;
 } t_args;
 
 #endif
