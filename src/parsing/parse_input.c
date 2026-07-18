@@ -142,7 +142,7 @@ t_args parse_input(const char **argv) {
 	
 	t_args args;
 	// int i;
-	
+	args.verbose = 0;
 	// i = 1;
 	argv++;
 	while (*argv && is_valid_flag(*argv, (t_args *)&args)) {

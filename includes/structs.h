@@ -1,10 +1,10 @@
-#ifndef STRUCTS_H 
+#ifndef STRUCTS_H
 #define STRUCTS_H
 
 #include <stdio.h>
 
 
-typedef struct __attribute__((packed)) s_arp_packet {
+typedef struct s_arp_packet {
 	unsigned short ar$hrd;   /* 16 bit Hardware address space (e.g., Ethernet,
 			                    Packet Radio Net.). */
 
@@ -34,7 +34,7 @@ typedef struct __attribute__((packed)) s_arp_packet {
 typedef struct s_reply_struct {
 
     int             sockfd; // your socket
-    char            *buffer[sizeof(arp_pckt)]; // bytes buffer (to convert from arp_pckt)
+    char            buffer[sizeof(arp_pckt)]; // bytes buffer (to convert from arp_pckt)
     size_t          buff_size; // buffer size
     unsigned char   sender_addr[6];
 
@@ -48,7 +48,7 @@ typedef struct s_args {
     unsigned char source_mac[6];
     unsigned char target_ip[4];
     unsigned char target_mac[6];
-    
+
     //flags
     int verbose;
     int hostname;

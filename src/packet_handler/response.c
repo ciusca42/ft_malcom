@@ -1,10 +1,4 @@
-#include "../../includes/ft_malcom.h" 
-#include <net/ethernet.h>
-#include <net/if_arp.h>
-#include <sys/wait.h>
-#include <unistd.h>
-
-
+#include "../../includes/ft_malcom.h"
 // #include <net/if.h>
 
 reply_struct create_reply(int sockfd, t_args args) {
@@ -24,25 +18,24 @@ reply_struct create_reply(int sockfd, t_args args) {
     memcpy(packet.ar$tpa, args.target_ip, 4);
     print_arp_packet(packet);
     reply.sockfd = sockfd; //todo replace with sockfd
-    memcpy(reply.buffer, &packet, sizeof(arp_pckt));
+    memcpy(reply.buffer, &packet, sizeof(packet));
     reply.buff_size = sizeof(arp_pckt);
     memcpy(reply.sender_addr, packet.ar$tha, packet.ar$hln);
 
     return reply;
 }
 
-ssize_t send_reply(reply_struct reply, int verbose) {
-    
+ssize_t send_reply(reply_struct reply, int verbose, int nic) {
     ssize_t bytes_sent;
-    struct sockaddr_ll header;    
-    
+    struct sockaddr_ll header;
 
+    memset(&header, 0, sizeof(header));
     header.sll_family = AF_PACKET;
     header.sll_protocol = htons(ETH_P_ARP);
-    header.sll_ifindex = 7;
+    header.sll_ifindex = nic;
     header.sll_halen = 6;
     header.sll_hatype = 0;
-    memcpy(header.sll_addr, reply.sender_addr, sizeof(reply.sender_addr));
+    memcpy(header.sll_addr, reply.sender_addr, 6);
     header.sll_pkttype = 0;
 
     if (verbose) {
@@ -51,14 +44,12 @@ ssize_t send_reply(reply_struct reply, int verbose) {
         printf("\nsender addr (MAC): ");
         print_address(reply.sender_addr, 6, ":");
     }
-    
-    //print sockaddr struct
     info_log("sending reply");
-    bytes_sent = sendto(reply.sockfd, 
+    bytes_sent = sendto(reply.sockfd,
             reply.buffer,
             reply.buff_size,
             0,
             (struct sockaddr *)&header,
-            sizeof(header));
+            sizeof header);
     return bytes_sent;
 }

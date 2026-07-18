@@ -51,6 +51,7 @@ $(NAME): $(OBJ)
 	@cp $(NAME) $(INSTALL_DIR)/$(BIN_NAME)
 # 	@export PATH=PATH:$(INSTALLDIR)/$(BIN_NAME)
 	$(ASCII_ART)
+	# @sudo chmod +x $(NAME)
 	@printf "$(GRN)Installed ->$(CRESET) $(WHT)$(INSTALL_DIR)/$(BIN_NAME)$(CRESET)\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -66,7 +67,7 @@ help:
 	@printf "  $(GRN)%-8s$(CRESET) compiles and runs the program automatically (args are required)\n" "run"
 	@printf "  $(GRN)%-8s$(CRESET) cleans the [$(YEL).o$(CRESET)] object files from the [$(YEL)obj/$(CRESET)] folder\n" "clean"
 	@printf "  $(GRN)%-8s$(CRESET) calls [$(YEL)clean$(CRESET)] and removes the executable\n" "fclean"
-	@printf "  $(GRN)%-8s$(CRESET) calls [$(YEL)fclean$(CRESET)] then [$(YEL)all$(CRESET)]\n" "re" 
+	@printf "  $(GRN)%-8s$(CRESET) calls [$(YEL)fclean$(CRESET)] then [$(YEL)all$(CRESET)]\n" "re"
 	@printf "\n"
 
 

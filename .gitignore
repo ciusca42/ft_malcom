@@ -59,3 +59,7 @@ obj/
 
 # executable name
 ft_malcom
+
+#personal configurations
+core.*
+.zed/

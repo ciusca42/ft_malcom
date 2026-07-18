@@ -46,6 +46,13 @@ extern int g_signal;
 /* parsing */
 t_args parse_input(const char **argv);
 
+/* debug prints */
+void print_input(t_args args);
+void print_address(unsigned char *addr, unsigned short len, const char *sep);
+void print_arp_packet(arp_pckt packet);
+void print_sockaddr_ll(struct sockaddr_ll info);
+void print_sockaddr(struct sockaddr *sa);
+
 /* parsing msgs */
 void parsing_error(char *error_type, char *msg);
 
@@ -59,15 +66,9 @@ void info_log(char *msg);
 void warn_log(char *msg);
 void err_log(char *msg);
 
-/* packet print utils */
-void print_address(unsigned char *addr, unsigned short len, const char *sep);
-void print_arp_packet(arp_pckt packet);
-void print_sockaddr_ll(struct sockaddr_ll info);
-void print_sockaddr(struct sockaddr *sa);
-
 /* packet handler */
 arp_pckt extract_arp_frame(unsigned char *buffer);
-ssize_t send_reply(reply_struct reply, int verbose);
+ssize_t send_reply(reply_struct reply, int verbose, int nic);
 reply_struct create_reply(int sockfd, t_args args);
 void handle_packet(int sockfd, struct sockaddr_ll *saddr, unsigned char *buffer, t_args args);
 

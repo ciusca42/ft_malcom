@@ -1,5 +1,4 @@
 #include "../../includes/ft_malcom.h"
-#include <stdio.h>
 
 void parsing_error(char *error_type, char *msg) {
     const char *reset = "\033[0m";
