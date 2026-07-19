@@ -5,19 +5,6 @@
 #ifndef FT_MALCOM_FT_MALCOM_H
 #define FT_MALCOM_FT_MALCOM_H
 
-#define DEBUG 1
-#define VERBOSE 1
-
-#define INFO 1 
-#define WARNING 2 
-#define ERROR 3
-
-#define IP_ADDRESS -1
-#define MAC_ADDRESS 1
-
-extern int g_signal;
-
-// std library
 #include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
@@ -35,16 +22,40 @@ extern int g_signal;
 #include <arpa/inet.h>
 #include <net/if_arp.h>
 #include <sys/wait.h>
+#include <signal.h>
+#include <netdb.h>
 
-// projects inludes
+// local inludes
 #include "errors.h"
 #include "structs.h"
-
-//libft
 #include "../libft/libft.h"
 
+#define BOLD  "\033[1m"
+#define RESET "\033[0m"
+
+#define DEBUG 1
+#define VERBOSE 1
+
+#define INFO 1 
+#define WARNING 2 
+#define ERROR 3
+
+#define IP_ADDRESS -1
+#define MAC_ADDRESS 1
+
+
 /* parsing */
-t_args parse_input(const char **argv);
+int parse_input(const char **argv, const int argc, t_args *args);
+int is_valid_flag(const char *flag, t_args *arg);
+int resolve_hostname(char *hostname, unsigned char *arg_ip);
+
+/* parsing helper functions */
+void fill_addr(char **source, unsigned char dest[], int size);
+size_t mat_len(char **mat);
+int parse_ip(char **ip_addr);
+int is_valid_hex(char hex[2]);
+int parse_mac(char **mac_addr); 
+int try_parse(const char **argv, char sep,  int (*parse_addr)(char**), unsigned char args_addr[]);
 
 /* debug prints */
 void print_input(t_args args);

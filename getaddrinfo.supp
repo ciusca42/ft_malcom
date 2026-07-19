@@ -1,0 +1,6 @@
+{
+   glibc_dlopen_nss
+   Memcheck:Leak
+   ...
+   fun:_dl_open
+}

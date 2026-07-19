@@ -58,7 +58,7 @@ obj/
 *.dwo
 
 # executable name
-ft_malcom
+ft_malcolm
 
 #personal configurations
 core.*

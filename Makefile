@@ -15,6 +15,12 @@ COMPILE_FLAGS = -Wall -Wextra -Werror -g
 
 INSTALL_DIR = /home/$(USER)/.local/bin
 
+#VALGRIND
+VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all
+SUPP_FILE = getaddrinfo.supp
+SUPPRESSION = --suppressions=$(SUPP_FILE)
+VALGRIND = valgrind $(VALGRIND_FLAGS) $(SUPPRESSION)
+
 RED    = \033[0;31m
 GRN    = \033[0;32m
 YEL    = \033[0;33m
@@ -24,7 +30,12 @@ CYN    = \033[0;36m
 WHT    = \033[0;37m
 CRESET = \033[0m
 
-ASCII_ART = @printf "$(CYN)"; \
+ASCII_ART = @printf "$(CYN)\n"; \
+	printf "\t▗▄▄▄▖▗▄▄▄▖    ▗▖  ▗▖ ▗▄▖ ▗▖    ▗▄▄▖ ▗▄▖ ▗▖   ▗▖  ▗▖    \n"; \
+	printf "\t▐▌     █      ▐▛▚▞▜▌▐▌ ▐▌▐▌   ▐▌   ▐▌ ▐▌▐▌   ▐▛▚▞▜▌    \n"; \
+	printf "\t▐▛▀▀▘  █      ▐▌  ▐▌▐▛▀▜▌▐▌   ▐▌   ▐▌ ▐▌▐▌   ▐▌  ▐▌    \n"; \
+	printf "\t▐▌     █      ▐▌  ▐▌▐▌ ▐▌▐▙▄▄▖▝▚▄▄▖▝▚▄▞▘▐▙▄▄▖▐▌  ▐▌    \n"; \
+	printf "                                                       \n"; \
 	printf "  ___   _      ___   _      ___   _      ___   _      ___   _\n"; \
 	printf " [(_)] |=|    [(_)] |=|    [(_)] |=|    [(_)] |=|    [(_)] |=|\n"; \
 	printf "  '-\`  |_|     '-\`  |_|     '-\`  |_|     '-\`  |_|     '-\`  |_|\n"; \
@@ -36,7 +47,7 @@ ASCII_ART = @printf "$(CYN)"; \
 	printf "                         '-\`  |_|     '-\`  |_|     '-\`  |_|\n"; \
 	printf "                        /mmm/        /mmm/        /mmm/\n"; \
 	printf "$(CRESET)\n"; \
-	printf "          $(CYN)[ which one will be poisoned?⚱ ]$(CRESET)\n\n"
+	printf "\t$(CYN)[ which one will be poisoned?⚱ ]$(CRESET)\n\n"
 
 
 all: $(NAME)
@@ -59,8 +70,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(COMPILER) $(COMPILE_FLAGS) -c $< -o $@
 
 run: all
-	./$(NAME)
+	./$(NAME) -v fedora aa:bb:cc:dd:ee:ff 192.168.1.60 00:0c:29:2b:b5:bf
 
+val: all
+	$(VALGRIND) ./$(NAME) -v fedora aa:bb:cc:dd:ee:ff 192.168.1.60 00:0c:29:2b:b5:bf
+	
 help:
 	@printf "\nrules:\n"
 	@printf "  $(GRN)%-8s$(CRESET) compiles the program and all the necessary libraries\n" "all"

@@ -10,40 +10,26 @@
 */
 
 #include "../includes/ft_malcom.h"
+#include <stdio.h>
 
-// int get_interface_index() {
-// 	struct ifaddrs *ifap;
-// 	int found;
+//todo
+//
+// add hostname resolution to ip
+// add help msg
+// test!!!
 
-// 	found = 0;
+int sockfd;
 
-// 	if (getifaddrs(&ifap) == -1) {
-// 		perror("getinfaddrs");
-// 		exit(1);
-// 	}
+void stop_progrram(int sig) {
 
-// 	while (ifap->ifa_next != NULL) {
-	
-// 	    if (!ifap->ifa_netmask && ifap->ifa_flags != 69699) continue;
-
-// 		found++;
-// 		printf("Network Interface Found!\n");	
-// 		printf("interface name: %s\n", ifap->ifa_name);
-// 		printf("address: ");
-// 		print_sockaddr(ifap->ifa_addr);
-// 		printf("netmask: ");
-// 		if (ifap->ifa_netmask)
-// 		    print_sockaddr(ifap->ifa_netmask);
-// 		printf("---------\n");
-// 		printf("\n");
-// 		ifap = ifap->ifa_next;
-// 		// print_address(, sizeof(&ifap->ifa_netmask), ":");
-// 	}
-
-// 	freeifaddrs(ifap);
-
-// 	return 1;
-// }
+    (void)sig;
+    // cancel the ^C characters wrote when sending SIGINT
+    fprintf(stderr, "\b\b");
+    info_log("Quitting program...");
+    close(sockfd);
+    sockfd = -1;
+    // exit(0);
+}
 
 
 int main(const int argc, const char **argv)
@@ -52,35 +38,18 @@ int main(const int argc, const char **argv)
 	socklen_t saddr_size;
     ssize_t data_size;
 	struct sockaddr_ll saddr;
-    int sockfd;
+    // int sockfd;
 	unsigned char *buffer;
 
-	printf("print mat\n");
-	printf("mat[1] = %s\n", argv[1]);
-	if (argc < 2) {
-		fprintf(stderr, "Invalid Arguments\n");
-		usage();
-		return 1;
+	
+	if (!parse_input(argv,argc, &args)) {
+	    return 0;
 	}
-
-	if (argc == 2 && !ft_strncmp(argv[1], "help", ft_strlen(argv[1]))) {
-        print_help();
-        return 0;
-	}
-
-	if (argc < 5) {
-		fprintf(stderr, "Invalid Arguments\n");
-		usage();
-		return 1;
-	}
-
-	args = parse_input(argv);
 
 	if (args.verbose) {
 	    print_input(args);
 	}
 
-	buffer = (unsigned char *)malloc(64);
 
 	info_log("creating socket");
 	sockfd = socket(AF_PACKET , SOCK_DGRAM , htons(ETH_P_ARP));
@@ -92,21 +61,27 @@ int main(const int argc, const char **argv)
 	}
 
 
+	buffer = (unsigned char *)malloc(64);
 	info_log("socket created");
     saddr_size = sizeof saddr;
+    signal(SIGINT, stop_progrram);
 	while(1)
 	{
 		// printf("waiting for packet...");
 		info_log("waiting for packets...");
 		data_size = recvfrom(sockfd , buffer , 64 , 0 , (struct sockaddr*)&saddr , &saddr_size);
+		if (sockfd == -1)
+		    break;
 		if( data_size < 0) {
 			continue;
 			warn_log("A packet was lost");
 		}
         handle_packet(sockfd, &saddr, buffer, args);
 	}
-	close(sockfd);
-	// free(buffer);
+
+	if (sockfd != -1)
+	    close(sockfd);
+	free(buffer);
 	printf("Finished");
 	return 0;
 }

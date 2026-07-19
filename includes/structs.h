@@ -43,7 +43,6 @@ typedef struct s_reply_struct {
 
 typedef struct s_args {
 
-    //todo: maybe use addr??
     unsigned char source_ip[4];
     unsigned char source_mac[6];
     unsigned char target_ip[4];
@@ -53,5 +52,11 @@ typedef struct s_args {
     int verbose;
     int hostname;
 } t_args;
+
+typedef struct s_flags{
+    const char *short_name;
+    const char *long_name;
+    int        *target;   // pointer directly into t_args flag
+} t_flags;
 
 #endif
