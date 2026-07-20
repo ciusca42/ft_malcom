@@ -10,13 +10,6 @@
 */
 
 #include "../includes/ft_malcom.h"
-#include <stdio.h>
-
-//todo
-//
-// add hostname resolution to ip
-// add help msg
-// test!!!
 
 int sockfd;
 
