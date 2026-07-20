@@ -23,7 +23,7 @@ make
 ## Usage
 
 ```sh
-./ft_malcolm [options] <source_ip> <source_mac> <target_ip> <target_mac>
+sudo ./ft_malcolm [options] <source_ip> <source_mac> <target_ip> <target_mac>
 ```
 
 | Argument      | Description                                    |
@@ -32,12 +32,12 @@ make
 | `source_mac`  | the spoofed mac address that will be sent to target |
 | `target_ip`   | IP address of the target host                 |
 | `target_mac`  | MAC address of the target host                 |
-| `-v`          | Optional flag. Enables verbose logging of every step
+| `-v`          | Optional flag. Enables verbose logging
 
 Example:
 
 ```sh
-sudo ./ft_malcolm 192.168.1.10 aa:bb:cc:dd:ee:01 192.168.1.20 aa:bb:cc:dd:ee:02 -v
+sudo ./ft_malcolm -v 192.168.1.10 aa:bb:cc:dd:ee:01 192.168.1.20 aa:bb:cc:dd:ee:02
 ```
 you can pass hostanames, that will be resolved in the actual ip address.
 
