@@ -28,10 +28,10 @@ make
 
 | Argument      | Description                                    |
 |---------------|-------------------------------------------------|
-| `source_ip`   | IP address of the first host to impersonate/target |
-| `source_mac`  | MAC address of the first host                  |
-| `target_ip`   | IP address of the second host                  |
-| `target_mac`  | MAC address of the second host                 |
+| `source_ip`   | IP address requested by the target            |
+| `source_mac`  | the spoofed mac address that will be sent to target |
+| `target_ip`   | IP address of the target host                 |
+| `target_mac`  | MAC address of the target host                 |
 | `-v`          | Optional flag. Enables verbose logging of every step
 
 Example:
