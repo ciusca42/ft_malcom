@@ -43,6 +43,7 @@
 #define IP_ADDRESS -1
 #define MAC_ADDRESS 1
 
+extern int sockfd;
 
 /* parsing */
 int parse_input(const char **argv, const int argc, t_args *args);
@@ -82,5 +83,8 @@ arp_pckt extract_arp_frame(unsigned char *buffer);
 ssize_t send_reply(reply_struct reply, int verbose, int nic);
 reply_struct create_reply(int sockfd, t_args args);
 void handle_packet(int sockfd, struct sockaddr_ll *saddr, unsigned char *buffer, t_args args);
+
+/* signal */
+void stop_program(int sig);
 
 #endif //FT_MALCOM_FT_MALCOM_H

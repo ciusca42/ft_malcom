@@ -13,18 +13,6 @@
 
 int sockfd;
 
-void stop_progrram(int sig) {
-
-    (void)sig;
-    // cancel the ^C characters wrote when sending SIGINT
-    fprintf(stderr, "\b\b");
-    info_log("Quitting program...");
-    close(sockfd);
-    sockfd = -1;
-    // exit(0);
-}
-
-
 int main(const int argc, const char **argv)
 {
 	t_args args;
@@ -57,7 +45,7 @@ int main(const int argc, const char **argv)
 	buffer = (unsigned char *)malloc(64);
 	info_log("socket created");
     saddr_size = sizeof saddr;
-    signal(SIGINT, stop_progrram);
+    signal(SIGINT, stop_program);
 	while(1)
 	{
 		// printf("waiting for packet...");
@@ -75,6 +63,6 @@ int main(const int argc, const char **argv)
 	if (sockfd != -1)
 	    close(sockfd);
 	free(buffer);
-	printf("Finished");
+	info_log("Finished\n");
 	return 0;
 }
