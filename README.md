@@ -32,7 +32,11 @@ sudo ./ft_malcolm [options] <source_ip> <source_mac> <target_ip> <target_mac>
 | `source_mac`  | the spoofed mac address that will be sent to target |
 | `target_ip`   | IP address of the target host                 |
 | `target_mac`  | MAC address of the target host                 |
-| `-v`          | Optional flag. Enables verbose logging
+
+| Options       | Description
+|---------------|-------------------------------------------------|
+| `-v` `--verrbose`  | Enables verbose logging |
+| `-p` `--persist` | Prevent quitting after packet is sent |
 
 Example:
 

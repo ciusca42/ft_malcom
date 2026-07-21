@@ -50,7 +50,7 @@ typedef struct s_args {
 
     //flags
     int verbose;
-    int hostname;
+    int persist;
 } t_args;
 
 typedef struct s_flags{

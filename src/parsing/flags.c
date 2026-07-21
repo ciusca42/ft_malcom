@@ -4,6 +4,7 @@
 int is_valid_flag(const char *flag, t_args *arg) {
     t_flags table[] = {
         {"-v", "--verbose", &arg->verbose},
+        {"-p", "--persist", &arg->persist},
         {NULL, NULL, NULL}
     };
     for (int i = 0; table[i].long_name; i++) {

@@ -20,13 +20,16 @@ void print_help(void) {
     printf("       " BOLD "-v" RESET ", " BOLD "--verbose" RESET "\n"
            "              Print detailed information about each packet sent,\n"
            "              including the raw header fields and sender address.\n\n");
+    printf("       " BOLD "-p" RESET ", " BOLD "--persist" RESET "\n"
+           "              Prevents the program from exiting after receiving the packet from target,\n"
+           "              it will keep listening until a "BOLD"SIGINT"RESET" is sent.\n\n");
 
     printf("       " BOLD "help" RESET "\n"
            "              Display this help message and exit.\n\n");
 
     printf(BOLD "ARGUMENTS" RESET "\n");
     printf("       " BOLD "source_ip" RESET "\n"
-           "              The IP address the ARP reply claims to belong to. This is\n"
+           "              The IP address requested by the target. This is\n"
            "              the identity being spoofed — the target will believe this\n"
            "              IP resolves to source_mac after receiving the reply.\n\n");
 

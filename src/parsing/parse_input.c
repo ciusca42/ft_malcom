@@ -35,7 +35,7 @@ int parse_input(const char **argv, const int argc, t_args *args) {
 
 	int flag_ret;
 
-	args->verbose = 0;
+	memset(args, 0, sizeof(t_args));
 
 	if (argc < 2) {
 		fprintf(stderr, "\nInvalid Arguments\n");

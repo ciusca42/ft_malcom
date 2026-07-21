@@ -46,10 +46,10 @@ int main(const int argc, const char **argv)
 	info_log("socket created");
     saddr_size = sizeof saddr;
     signal(SIGINT, stop_program);
+	info_log("waiting for packets...");
 	while(1)
 	{
 		// printf("waiting for packet...");
-		info_log("waiting for packets...");
 		data_size = recvfrom(sockfd , buffer , 64 , 0 , (struct sockaddr*)&saddr , &saddr_size);
 		if (sockfd == -1)
 		    break;

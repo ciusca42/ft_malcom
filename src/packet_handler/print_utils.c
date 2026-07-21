@@ -4,14 +4,13 @@
 void print_sockaddr_ll(struct sockaddr_ll info) {
     printf("-----struct sockaddr_ll------\n");
     printf("sll_family:   %u\n", info.sll_family);
-    printf("sll_protocol: %02x\n", info.sll_protocol);
+    printf("sll_protocol: %02x\n", ntohs(info.sll_protocol));
     printf("sll_ifindex:  %d\n", info.sll_ifindex);
     printf("sll_hatype:   %u\n", info.sll_hatype);
     printf("sll_pkttype:  %u\n", info.sll_pkttype);
     printf("sll_halen:    %u\n", info.sll_halen);
     printf("sll_addr:     ");
     print_address(info.sll_addr, info.sll_halen, ":");
-    printf("\n");
 }
 
 void print_address(unsigned char *addr, unsigned short len, const char *sep)

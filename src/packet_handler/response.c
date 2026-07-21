@@ -39,7 +39,6 @@ ssize_t send_reply(reply_struct reply, int verbose, int nic) {
     header.sll_pkttype = 0;
 
     if (verbose) {
-        printf("-----REPLY HEADER----\n");
         print_sockaddr_ll(header);
         printf("\nsender addr (MAC): ");
         print_address(reply.sender_addr, 6, ":");
