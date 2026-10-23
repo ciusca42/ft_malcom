@@ -64,6 +64,11 @@ int parse_input(const char **argv, const int argc, t_args *args) {
 	    argv++;
 	}
 
+	if (!ft_strncmp(*argv, "-", strlen(*argv))) {
+	    parsing_error("Invalid flag -> ", (char*)*argv);
+		return 0;
+	}
+
 	if (flag_ret == -1) {
         parsing_error("Flag already used -> ", (char*)*argv);
         return 0;
