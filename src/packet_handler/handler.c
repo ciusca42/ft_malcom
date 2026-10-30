@@ -30,8 +30,12 @@ void handle_packet(int sockfd, struct sockaddr_ll *saddr, unsigned char *buffer,
 	if (args.verbose)
 		print_arp_packet(packet);
 	
-	info_log("recived an ARP packet from target: ");
-	print_address(args.target_ip, 4, ".");
+	info_log("recived an ARP packet from target");
+
+	if (args.verbose) {
+	    printf(GRAY"\taddress: ");
+	    print_address(args.target_ip, 4, ".");
+	}
 
     reply = create_reply(sockfd, args);
     

@@ -9,7 +9,7 @@ reply_struct create_reply(int sockfd, t_args args) {
     info_log("creating reply packet");
     packet.ar$hrd = htons(ARPHRD_ETHER);
     packet.ar$pro = htons(ETH_P_IP);
-    packet.ar$hln = 6;
+    packet.ar$hln = 6; 
     packet.ar$pln = 4;
     packet.ar$op = htons(ARPOP_REPLY);
     memcpy(packet.ar$sha, args.source_mac, 6);
@@ -17,7 +17,7 @@ reply_struct create_reply(int sockfd, t_args args) {
     memcpy(packet.ar$tha, args.target_mac, 6);
     memcpy(packet.ar$tpa, args.target_ip, 4);
     print_arp_packet(packet);
-    reply.sockfd = sockfd; //todo replace with sockfd
+    reply.sockfd = sockfd;
     memcpy(reply.buffer, &packet, sizeof(packet));
     reply.buff_size = sizeof(arp_pckt);
     memcpy(reply.sender_addr, packet.ar$tha, packet.ar$hln);
@@ -43,7 +43,7 @@ ssize_t send_reply(reply_struct reply, int verbose, int nic) {
         printf("\nsender addr (MAC): ");
         print_address(reply.sender_addr, 6, ":");
     }
-    info_log("sending reply");
+    info_log("sending reply...");
     bytes_sent = sendto(reply.sockfd,
             reply.buffer,
             reply.buff_size,

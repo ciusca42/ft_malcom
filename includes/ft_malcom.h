@@ -30,6 +30,7 @@
 #include "structs.h"
 #include "../libft/libft.h"
 
+#define GRAY "\033[2m"
 #define BOLD  "\033[1m"
 #define RESET "\033[0m"
 

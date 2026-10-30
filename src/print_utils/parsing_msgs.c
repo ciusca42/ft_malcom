@@ -6,6 +6,6 @@ void parsing_error(char *msg, char *var) {
 
     if (!var)
         var = "";
-                //red [Error type]: reset *msg;
+    //red [Error type]: reset *msg;
     fprintf(stderr, "\n[%s%s%s]: %s%s\n", red, "ERROR", reset, msg, var);
 }

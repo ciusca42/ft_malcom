@@ -23,14 +23,14 @@ int main(const int argc, const char **argv)
     // int sockfd;
 	unsigned char *buffer;
 
-	
+
 	if (!parse_input(argv,argc, &args)) {
 	    return 0;
 	}
 
-	if (args.verbose) {
-	    print_input(args);
-	}
+	// if (args.verbose) {
+	//     print_input(args);
+	// }
 
 
 	info_log("creating socket");
