@@ -1,5 +1,15 @@
 #include "../../includes/ft_malcom.h"
 
+int max_len(const char *str1,const char *str2) {
+    int len_a;
+    int len_b;
+
+    len_a = strlen(str1);
+    len_b = strlen(str2);
+
+    // return directly the longest string
+    return len_a > len_b ? len_a : len_b;
+}
 
 void fill_addr(char **source, unsigned char dest[], int size) {
 

@@ -31,6 +31,18 @@ int parse_address(const char **argv, t_args *args) {
     return 1;
 }
 
+// check same ip or mac address
+int parse_same_input(const char **argv) {
+    // print_matrix((char**)argv);
+    if (!ft_strncmp(*argv, *(argv + 2), max_len(*argv, *(argv + 2)))) {
+        return 0;
+    }
+    if (!ft_strncmp(*(argv + 1), *(argv + 3), max_len(*(argv + 1), *(argv + 3)))) {
+        return 0;
+    }
+    return 1;
+}
+
 int parse_input(const char **argv, const int argc, t_args *args) {
 
 	int flag_ret;
@@ -62,6 +74,11 @@ int parse_input(const char **argv, const int argc, t_args *args) {
 	    if (flag_ret == -1)
 			break;
 	    argv++;
+	}
+
+	if (!parse_same_input(argv)) {
+	    parsing_error("Cannot insert same values", 0);
+	    return 0;
 	}
 
 	if (!ft_strncmp(*argv, "-", strlen(*argv))) {

@@ -35,7 +35,7 @@ sudo ./ft_malcolm [options] <source_ip> <source_mac> <target_ip> <target_mac>
 
 | Options       | Description
 |---------------|-------------------------------------------------|
-| `-v` `--verrbose`  | Enables verbose logging |
+| `-v` `--verbose`  | Enables verbose logging |
 | `-p` `--persist` | Prevent quitting after packet is sent |
 
 Example:

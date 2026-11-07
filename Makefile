@@ -71,9 +71,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(COMPILER) $(COMPILE_FLAGS) -c $< -o $@
 
+# [DEPRECTADED]
 run: all
 	./$(NAME) -v fedora aa:bb:cc:dd:ee:ff 192.168.1.60 00:0c:29:2b:b5:bf
 
+# [DEPRECTADED]
 val: all
 	$(VALGRIND) ./$(NAME) -v fedora aa:bb:cc:dd:ee:ff 192.168.1.60 00:0c:29:2b:b5:bf
 	

@@ -5,8 +5,7 @@ int is_target(t_args args, arp_pckt packet) {
 	    memcmp(&packet.ar$sha, &args.target_mac, packet.ar$hln) != 0)
 	{				
 		return 0;
-	}
-	
+	}	
 	return 1;
 }
 

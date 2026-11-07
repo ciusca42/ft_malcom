@@ -58,6 +58,7 @@ int parse_ip(char **ip_addr);
 int is_valid_hex(char hex[2]);
 int parse_mac(char **mac_addr); 
 int try_parse(const char **argv, char sep,  int (*parse_addr)(char**), unsigned char args_addr[]);
+int max_len(const char *str1,const char *str2);
 
 /* debug prints */
 void print_input(t_args args);
